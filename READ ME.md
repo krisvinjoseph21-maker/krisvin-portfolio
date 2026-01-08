@@ -1,9 +1,14 @@
-# Krisvin Joseph Portfolio
-
-Welcome to my portfolio! Below are some of my projects, with live demos and links to their code.
-
-## Projects
-
-### 1. Sports Dashboard
-- **Description:** Interactive sports statistics dashboard built with HTML, CSS, JavaScript, and Chart.js. Features dynamic sorting, filtering, top performer highlighting, and interactive charts.
-- **Code:** (([https://krisvinjoseph21-maker.github.io/SPORTS-DASHBOARD/])
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Krisvin Joseph Portfolio</title>
+</head>
+<body>
+    <h1>Krisvin Joseph Portfolio</h1>
+    <p>Welcome! Here are some of my projects:</p>
+    <ul>
+        <li><a href="[https://krisvinjoseph21-maker.github.io/SPORTS-DASHBOARD/]">Sports Dashboard</a></li>
+        <!-- Add more projects here -->
+    </ul>
+</body>
+</html>
