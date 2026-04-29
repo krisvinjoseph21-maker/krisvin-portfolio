@@ -19,7 +19,6 @@
       --text:           #f0f0f0;
       --text-secondary: #888888;
       --text-tertiary:  #444444;
-      --green:          #4ade80;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,10 +32,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    ::selection {
-      background: var(--text);
-      color: var(--bg);
-    }
+    ::selection { background: var(--text); color: var(--bg); }
 
     a:focus-visible {
       outline: 2px solid var(--text);
@@ -45,172 +41,168 @@
     }
 
     /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--border);
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+    #main-nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
     }
 
-    .nav-inner {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 52px;
+    .nav-pill {
+      list-style: none;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 2px;
+      background: rgba(16, 16, 16, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 50px;
+      padding: 5px 6px;
     }
 
-    .nav-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
+    .nav-tab {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px;
       font-weight: 500;
-      color: var(--text);
+      color: rgba(255, 255, 255, 0.45);
       text-decoration: none;
-      letter-spacing: -0.01em;
+      padding: 7px 16px;
+      border-radius: 40px;
+      transition: color 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+    .nav-tab:hover { color: rgba(255, 255, 255, 0.8); }
 
-    .nav-link {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .nav-link:hover { color: var(--text); }
-
-    /* ── Container ── */
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 24px;
+    .nav-tab.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     /* ── Hero ── */
-    .hero { padding: 88px 0 72px; }
-
-    .availability {
-      display: inline-flex;
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      margin-bottom: 32px;
-      letter-spacing: 0.01em;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
     }
 
-    .availability-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-      flex-shrink: 0;
-      animation: pulse 2.5s ease-in-out infinite;
+    #bg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50%       { transform: scale(1.4); opacity: 0.6; }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 24px;
     }
 
-    .hero h1 {
+    .hero-content h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(44px, 7vw, 68px);
+      font-size: clamp(52px, 9vw, 108px);
       font-weight: 700;
       letter-spacing: -0.04em;
-      line-height: 1.0;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-
-    .hero-role {
-      font-size: clamp(16px, 2.2vw, 20px);
-      font-weight: 400;
-      color: var(--text-secondary);
-      letter-spacing: -0.005em;
+      color: #fff;
+      line-height: 1;
       margin-bottom: 20px;
     }
 
-    .hero-bio {
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--text-secondary);
-      max-width: 500px;
-      margin-bottom: 36px;
+    .typewriter-line {
+      font-size: clamp(16px, 2.2vw, 22px);
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 44px;
+      min-height: 1.6em;
+      letter-spacing: -0.005em;
     }
 
-    .hero-links {
+    .cursor {
+      display: inline-block;
+      font-weight: 300;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .hero-btns {
       display: flex;
+      gap: 12px;
+      justify-content: center;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 8px 20px;
     }
 
-    /* ── Buttons ── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       font-family: 'DM Sans', sans-serif;
       font-size: 13px;
       font-weight: 500;
       text-decoration: none;
-      cursor: pointer;
-      border: none;
-      background: none;
+      padding: 11px 26px;
+      border-radius: 50px;
       transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
     }
 
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      padding: 10px 20px;
-      border-radius: 980px;
+    .btn-primary { background: #fff; color: #0a0a0a; }
+    .btn-primary:hover { background: #ddd; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
 
-    .btn-primary:hover {
-      background: #d0d0d0;
+    .btn-outline:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.45);
       transform: translateY(-1px);
     }
 
-    .btn-text {
-      color: var(--text-secondary);
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-
-    .btn-text:hover {
-      color: var(--text);
-      border-bottom-color: var(--text-tertiary);
-    }
-
     /* ── Sections ── */
-    section {
-      padding: 56px 0;
+    section:not(.hero) {
+      padding: 96px 0;
       border-top: 1px solid var(--border);
+      scroll-margin-top: 80px;
     }
 
-    .section-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-      margin-bottom: 24px;
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
+
+    .section-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 40px;
+    }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin-bottom: 18px;
+    }
+
+    .about-text:last-child { margin-bottom: 0; }
 
     /* ── Project Cards ── */
     .projects {
@@ -246,19 +238,18 @@
 
     .project-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text);
     }
 
     .project-arrow {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--text-tertiary);
       flex-shrink: 0;
-      transition: color 0.15s ease, transform 0.15s ease;
-      line-height: 1;
-      margin-top: 3px;
+      transition: color 0.15s, transform 0.15s;
+      margin-top: 2px;
     }
 
     .project-card:hover .project-arrow {
@@ -268,7 +259,7 @@
 
     .project-desc {
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.75;
       color: var(--text-secondary);
       margin-bottom: 16px;
     }
@@ -296,16 +287,9 @@
       color: var(--text-tertiary);
     }
 
-    .project-highlights strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .project-highlights strong { color: var(--text); font-weight: 600; }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .tag {
       font-size: 11px;
@@ -316,15 +300,18 @@
       border: 1px solid var(--border-strong);
       color: var(--text-secondary);
       background: transparent;
-      transition: border-color 0.2s ease, color 0.2s ease;
+      transition: border-color 0.2s, color 0.2s;
     }
 
-    .project-card:hover .tag {
-      border-color: #3a3a3a;
-      color: var(--text);
-    }
+    .project-card:hover .tag { border-color: #3a3a3a; color: var(--text); }
 
     /* ── Experience / Education Cards ── */
+    .exp-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .exp-card {
       border: 1px solid var(--border);
       border-radius: 18px;
@@ -342,7 +329,7 @@
 
     .exp-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: var(--text);
@@ -350,17 +337,17 @@
 
     .exp-date {
       font-size: 12px;
-      font-weight: 400;
       color: var(--text-tertiary);
       flex-shrink: 0;
     }
 
     .exp-role {
       font-size: 13px;
-      font-weight: 400;
       color: var(--text-secondary);
       margin-bottom: 16px;
     }
+
+    .exp-role-only { margin-bottom: 0; }
 
     .exp-bullets {
       list-style: none;
@@ -377,30 +364,14 @@
       position: relative;
     }
 
-    .exp-bullets li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--text-tertiary);
-    }
+    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--text-tertiary); }
 
-    .exp-bullets strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .exp-bullets strong { color: var(--text); font-weight: 600; }
 
     /* ── Skills ── */
-    .skills-groups {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+    .skills-groups { display: flex; flex-direction: column; gap: 20px; }
 
-    .skill-group {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-    }
+    .skill-group { display: flex; align-items: baseline; gap: 16px; }
 
     .skill-group-label {
       font-size: 11px;
@@ -412,11 +383,7 @@
       flex-shrink: 0;
     }
 
-    .skill-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
 
     .skill-pill {
       font-size: 13px;
@@ -428,66 +395,99 @@
       padding: 6px 12px;
     }
 
+    /* ── Contact ── */
+    .contact-inner { text-align: center; }
+
+    .contact-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: -20px;
+      margin-bottom: 40px;
+    }
+
+    .contact-links { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; }
+
+    .contact-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .contact-link:hover { color: var(--text); border-bottom-color: var(--text-tertiary); }
+
     /* ── Footer ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 32px 0 48px;
+      padding: 28px 0 40px;
       text-align: center;
     }
 
-    footer p {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      letter-spacing: 0.01em;
-    }
+    footer p { font-size: 12px; color: var(--text-tertiary); }
 
     /* ── Responsive ── */
-    @media (max-width: 600px) {
-      .hero { padding: 64px 0 56px; }
-      .nav-links { gap: 14px; }
+    @media (max-width: 680px) {
+      .nav-pill { padding: 4px; }
+      .nav-tab { font-size: 11.5px; padding: 6px 10px; }
       .exp-header { flex-direction: column; align-items: flex-start; gap: 2px; }
       .project-card, .exp-card { padding: 20px; }
-      section { padding: 40px 0; }
+      section:not(.hero) { padding: 72px 0; }
       .skill-group { flex-direction: column; gap: 8px; }
       .skill-group-label { min-width: auto; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-tab { font-size: 11px; padding: 5px 8px; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-inner">
-      <a class="nav-name" href="#">Krisvin Joseph</a>
-      <div class="nav-links">
-        <a class="nav-link" href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="nav-link" href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a class="nav-link" href="mailto:krisvinjoseph21@gmail.com">Email ↗</a>
-      </div>
-    </div>
+  <nav id="main-nav">
+    <ul class="nav-pill">
+      <li><a class="nav-tab active" href="#home">Home</a></li>
+      <li><a class="nav-tab" href="#about">About</a></li>
+      <li><a class="nav-tab" href="#projects">Projects</a></li>
+      <li><a class="nav-tab" href="#experience">Experience</a></li>
+      <li><a class="nav-tab" href="#skills">Skills</a></li>
+      <li><a class="nav-tab" href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <div class="container">
-
-    <header class="hero">
-      <div class="availability">
-        <span class="availability-dot"></span>
-        Open to Opportunities
-      </div>
-      <h1>Krisvin Joseph</h1>
-      <p class="hero-role">Software Engineer &amp; Founder</p>
-      <p class="hero-bio">
-        I build full-stack products, ML platforms, and developer tools from the ground up.
-        CS student at UT Dallas, graduating Dec 2029.
+  <section id="home" class="hero">
+    <canvas id="bg-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Hi, I'm Krisvin</h1>
+      <p class="typewriter-line">
+        <span id="typed"></span><span class="cursor">|</span>
       </p>
-      <div class="hero-links">
-        <a class="btn btn-primary" href="mailto:krisvinjoseph21@gmail.com">Get in Touch</a>
-        <a class="btn btn-text" href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn btn-text" href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="#projects">View My Work</a>
+        <a class="btn btn-outline" href="#contact">Get in Touch</a>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <section>
-      <p class="section-label">Projects</p>
+  <section id="about">
+    <div class="container">
+      <h2 class="section-heading">About Me</h2>
+      <p class="about-text">
+        Builder at heart. I take ideas from zero to production — full-stack apps, ML models,
+        and game engines. I care about security, performance, and shipping things that actually work.
+      </p>
+      <p class="about-text">
+        Currently running Gamesense AI, a sports analytics platform delivering ML-powered insights
+        to 200+ active users. Studying Computer Science at the University of Texas at Dallas.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-heading">Projects</h2>
       <div class="projects">
 
         <a class="project-card" href="https://beat-store-d3iw-dytm1lz3e-krisvinjoseph21-makers-projects.vercel.app/" target="_blank" rel="noopener">
@@ -536,25 +536,37 @@
         </a>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <p class="section-label">Experience</p>
-      <div class="exp-card">
-        <div class="exp-header">
-          <span class="exp-title">Gamesense AI</span>
-          <span class="exp-date">Nov 2025 – Present</span>
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-heading">Experience</h2>
+      <div class="exp-stack">
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">Gamesense AI</span>
+            <span class="exp-date">Nov 2025 – Present</span>
+          </div>
+          <p class="exp-role">Founder &amp; CEO · Remote</p>
+          <ul class="exp-bullets">
+            <li>Built and deployed an ML-powered sports analytics platform using a custom Random Forest model for player stat prediction, surpassing baseline heuristics by <strong>18%</strong> in forecasting accuracy across <strong>5</strong> major sports leagues</li>
+            <li>Engineered an end-to-end data pipeline — web scraping, feature engineering, and real-time inference — delivering predictive performance insights to <strong>200+ active users</strong></li>
+          </ul>
         </div>
-        <p class="exp-role">Founder &amp; CEO · Remote</p>
-        <ul class="exp-bullets">
-          <li>Built and deployed an ML-powered sports analytics platform using a custom Random Forest model for player stat prediction, surpassing baseline heuristics by <strong>18%</strong> in forecasting accuracy across <strong>5</strong> major sports leagues</li>
-          <li>Engineered an end-to-end data pipeline — web scraping, feature engineering, and real-time inference — delivering predictive performance insights to <strong>200+ active users</strong></li>
-        </ul>
+        <div class="exp-card">
+          <div class="exp-header">
+            <span class="exp-title">The University of Texas at Dallas</span>
+          </div>
+          <p class="exp-role exp-role-only">B.S. Computer Science</p>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <p class="section-label">Skills</p>
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-heading">Skills</h2>
       <div class="skills-groups">
         <div class="skill-group">
           <span class="skill-group-label">Languages</span>
@@ -600,24 +612,115 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section>
-      <p class="section-label">Education</p>
-      <div class="exp-card">
-        <div class="exp-header">
-          <span class="exp-title">The University of Texas at Dallas</span>
-          <span class="exp-date">Dec 2029</span>
-        </div>
-        <p class="exp-role">B.S. Computer Science · Dallas, TX</p>
+  <section id="contact">
+    <div class="container contact-inner">
+      <h2 class="section-heading">Get In Touch</h2>
+      <p class="contact-sub">Open to internships, collaborations, and interesting projects.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:krisvinjoseph21@gmail.com">Email ↗</a>
+        <a class="contact-link" href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
-    </section>
-
-  </div>
+    </div>
+  </section>
 
   <footer>
-    <p>Krisvin Joseph · Dallas, TX · 2026</p>
+    <div class="container">
+      <p>Krisvin Joseph · Dallas, TX · 2026</p>
+    </div>
   </footer>
+
+  <script>
+    // ── Particle mesh background ──
+    const canvas = document.getElementById('bg-canvas');
+    const ctx    = canvas.getContext('2d');
+    const N = 72, LINK = 155;
+    let pts = [];
+
+    function resize() {
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function mkPts() {
+      pts = Array.from({ length: N }, () => ({
+        x:  Math.random() * canvas.width,
+        y:  Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r:  Math.random() * 1.2 + 0.4
+      }));
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of pts) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        ctx.fill();
+      }
+
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+          if (d < LINK) {
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.strokeStyle = `rgba(255,255,255,${(1 - d / LINK) * 0.1})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize', () => { resize(); mkPts(); });
+    resize(); mkPts(); frame();
+
+    // ── Typewriter ──
+    const phrases = [
+      'Software Engineer.',
+      'Full-Stack Developer.',
+      'ML Engineer.',
+      'Founder.'
+    ];
+    let pi = 0, ci = 0, del = false;
+    const typed = document.getElementById('typed');
+
+    (function type() {
+      const cur = phrases[pi];
+      typed.textContent = del ? cur.slice(0, --ci) : cur.slice(0, ++ci);
+      if (!del && ci === cur.length) { del = true; setTimeout(type, 1800); return; }
+      if (del  && ci === 0)          { del = false; pi = (pi + 1) % phrases.length; }
+      setTimeout(type, del ? 38 : 78);
+    })();
+
+    // ── Active nav highlight on scroll ──
+    const sections = document.querySelectorAll('section[id]');
+    const tabs     = document.querySelectorAll('.nav-tab');
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        tabs.forEach(t => t.classList.remove('active'));
+        const t = document.querySelector(`.nav-tab[href="#${e.target.id}"]`);
+        if (t) t.classList.add('active');
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach(s => obs.observe(s));
+  </script>
 
 </body>
 </html>
