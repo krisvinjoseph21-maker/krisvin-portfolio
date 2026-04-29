@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://krisvinjoseph21-maker.github.io/krisvin-portfolio/sitemap.xml

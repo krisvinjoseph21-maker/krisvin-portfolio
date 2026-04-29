@@ -4,531 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Krisvin Joseph — Software Engineer</title>
+  <meta name="description" content="Software Engineer, Full-Stack Developer, and ML Engineer based in Dallas, TX. Founder of Gamesense AI. CS student at UT Dallas." />
+  <link rel="canonical" href="https://krisvinjoseph21-maker.github.io/krisvin-portfolio/" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2212%22 fill=%22%230a0a0a%22/><text y=%22.82em%22 x=%2250%25%22 text-anchor=%22middle%22 font-size=%2268%22 font-family=%22sans-serif%22 font-weight=%22700%22 fill=%22%23f0f0f0%22>K</text></svg>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://krisvinjoseph21-maker.github.io/krisvin-portfolio/" />
+  <meta property="og:title" content="Krisvin Joseph — Software Engineer" />
+  <meta property="og:description" content="Software Engineer, Full-Stack Developer, and ML Engineer based in Dallas, TX. Founder of Gamesense AI." />
+  <meta property="og:image" content="https://github.com/krisvinjoseph21-maker.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Krisvin Joseph — Software Engineer" />
+  <meta name="twitter:description" content="Software Engineer, Full-Stack Developer, and ML Engineer based in Dallas, TX. Founder of Gamesense AI." />
+  <meta name="twitter:image" content="https://github.com/krisvinjoseph21-maker.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap"></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Krisvin Joseph",
+    "url": "https://krisvinjoseph21-maker.github.io/krisvin-portfolio/",
+    "email": "krisvinjoseph21@gmail.com",
+    "jobTitle": "Software Engineer",
+    "description": "Software Engineer, Full-Stack Developer, and ML Engineer. Founder of Gamesense AI, a sports analytics platform delivering ML-powered insights to 200+ active users.",
+    "sameAs": [
+      "https://github.com/krisvinjoseph21-maker",
+      "https://www.linkedin.com/in/krisvin-joseph"
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "The University of Texas at Dallas"
+    },
+    "knowsAbout": ["Software Engineering", "Machine Learning", "Full-Stack Development", "Game Development"]
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:             #0a0a0a;
-      --surface:        #111111;
-      --surface-2:      #161616;
-      --border:         #1e1e1e;
-      --border-strong:  #2c2c2c;
-      --text:           #f0f0f0;
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface-2: #161616;
+      --border: #1e1e1e;
+      --border-strong: #2c2c2c;
+      --text: #f0f0f0;
       --text-secondary: #888888;
-      --text-tertiary:  #444444;
+      --text-tertiary: #444444;
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     ::selection { background: var(--text); color: var(--bg); }
-
-    a:focus-visible {
-      outline: 2px solid var(--text);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* ── Nav ── */
-    #main-nav {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-    }
-
-    .nav-pill {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      background: rgba(16, 16, 16, 0.92);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 50px;
-      padding: 5px 6px;
-    }
-
-    .nav-tab {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13.5px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.45);
-      text-decoration: none;
-      padding: 7px 16px;
-      border-radius: 40px;
-      transition: color 0.2s ease, background 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .nav-tab:hover { color: rgba(255, 255, 255, 0.8); }
-
-    .nav-tab.active {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* ── Hero ── */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      background: #000;
-    }
-
-    #bg-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 0 24px;
-    }
-
-    .hero-content h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(52px, 9vw, 108px);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      color: #fff;
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .typewriter-line {
-      font-size: clamp(16px, 2.2vw, 22px);
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 44px;
-      min-height: 1.6em;
-      letter-spacing: -0.005em;
-    }
-
-    .cursor {
-      display: inline-block;
-      font-weight: 300;
-      animation: blink 1s step-end infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0; }
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      padding: 11px 26px;
-      border-radius: 50px;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-    }
-
+    a:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 4px; }
+    .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .skip-link:focus { position: fixed; top: 0; left: 0; width: auto; height: auto; padding: 10px 20px; background: #fff; color: #0a0a0a; font-size: 14px; font-weight: 600; z-index: 9999; text-decoration: none; border-radius: 0 0 8px 0; }
+    #main-nav { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 200; }
+    .nav-pill { list-style: none; display: flex; align-items: center; gap: 2px; background: rgba(16,16,16,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); border-radius: 50px; padding: 5px 6px; }
+    .nav-tab { font-family: 'DM Sans', sans-serif; font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.6); text-decoration: none; padding: 7px 16px; border-radius: 40px; transition: color 0.2s ease, background 0.2s ease; white-space: nowrap; }
+    .nav-tab:hover { color: rgba(255,255,255,0.85); }
+    .nav-tab.active { color: #fff; background: rgba(255,255,255,0.1); }
+    .hero { position: relative; width: 100%; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #000; }
+    #bg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-content { position: relative; z-index: 1; text-align: center; padding: 0 24px; }
+    .hero-content h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(52px,9vw,108px); font-weight: 700; letter-spacing: -0.04em; color: #fff; line-height: 1; margin-bottom: 20px; }
+    .typewriter-line { font-size: clamp(16px,2.2vw,22px); color: rgba(255,255,255,0.65); margin-bottom: 44px; min-height: 1.6em; letter-spacing: -0.005em; }
+    .cursor { display: inline-block; font-weight: 300; animation: blink 1s step-end infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; text-decoration: none; padding: 11px 26px; border-radius: 50px; transition: all 0.2s ease; display: inline-flex; align-items: center; }
     .btn-primary { background: #fff; color: #0a0a0a; }
     .btn-primary:hover { background: #ddd; transform: translateY(-1px); }
-
-    .btn-outline {
-      background: transparent;
-      color: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .btn-outline:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.45);
-      transform: translateY(-1px);
-    }
-
-    /* ── Sections ── */
-    section:not(.hero) {
-      padding: 96px 0;
-      border-top: 1px solid var(--border);
-      scroll-margin-top: 80px;
-    }
-
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .section-heading {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(30px, 5vw, 50px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 40px;
-    }
-
-    /* ── About ── */
-    .about-text {
-      font-size: 16px;
-      line-height: 1.9;
-      color: var(--text-secondary);
-      max-width: 620px;
-      margin-bottom: 18px;
-    }
-
+    .btn-outline { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.22); }
+    .btn-outline:hover { color: #fff; border-color: rgba(255,255,255,0.5); transform: translateY(-1px); }
+    section:not(.hero) { padding: 96px 0; border-top: 1px solid var(--border); scroll-margin-top: 80px; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .section-heading { font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px,5vw,50px); font-weight: 700; letter-spacing: -0.03em; color: var(--text); margin-bottom: 40px; }
+    .about-text { font-size: 16px; line-height: 1.9; color: var(--text-secondary); max-width: 620px; margin-bottom: 18px; }
     .about-text:last-child { margin-bottom: 0; }
-
-    /* ── Project Cards ── */
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      background: var(--surface);
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .project-card:hover {
-      background: var(--surface-2);
-      border-color: var(--border-strong);
-      transform: translateY(-3px);
-    }
-
-    .project-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .project-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .project-arrow {
-      font-size: 16px;
-      color: var(--text-tertiary);
-      flex-shrink: 0;
-      transition: color 0.15s, transform 0.15s;
-      margin-top: 2px;
-    }
-
-    .project-card:hover .project-arrow {
-      color: var(--text);
-      transform: translate(2px, -2px);
-    }
-
-    .project-desc {
-      font-size: 14px;
-      line-height: 1.75;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-    }
-
-    .project-highlights {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      margin-bottom: 20px;
-    }
-
-    .project-highlights li {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      padding-left: 18px;
-      position: relative;
-    }
-
-    .project-highlights li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--text-tertiary);
-    }
-
+    .projects { display: flex; flex-direction: column; gap: 14px; }
+    .project-card { border: 1px solid var(--border); border-radius: 18px; padding: 28px; background: var(--surface); text-decoration: none; color: inherit; display: block; transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+    .project-card:hover { background: var(--surface-2); border-color: var(--border-strong); transform: translateY(-3px); }
+    .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .project-arrow { font-size: 16px; color: var(--text-tertiary); flex-shrink: 0; transition: color 0.15s, transform 0.15s; margin-top: 2px; }
+    .project-card:hover .project-arrow { color: var(--text); transform: translate(2px,-2px); }
+    .project-desc { font-size: 14px; line-height: 1.75; color: var(--text-secondary); margin-bottom: 16px; }
+    .project-highlights { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 20px; }
+    .project-highlights li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; position: relative; }
+    .project-highlights li::before { content: '—'; position: absolute; left: 0; color: var(--text-tertiary); }
     .project-highlights strong { color: var(--text); font-weight: 600; }
-
     .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .tag {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border-strong);
-      color: var(--text-secondary);
-      background: transparent;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
+    .tag { font-size: 11px; font-weight: 500; letter-spacing: 0.01em; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border-strong); color: var(--text-secondary); background: transparent; transition: border-color 0.2s, color 0.2s; }
     .project-card:hover .tag { border-color: #3a3a3a; color: var(--text); }
-
-    /* ── Experience / Education Cards ── */
-    .exp-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .exp-card {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 24px 28px;
-      background: var(--surface);
-    }
-
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 3px;
-    }
-
-    .exp-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .exp-date {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      flex-shrink: 0;
-    }
-
-    .exp-role {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-    }
-
+    .exp-stack { display: flex; flex-direction: column; gap: 14px; }
+    .exp-card { border: 1px solid var(--border); border-radius: 18px; padding: 24px 28px; background: var(--surface); }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 3px; }
+    .exp-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+    .exp-date { font-size: 12px; color: var(--text-tertiary); flex-shrink: 0; }
+    .exp-role { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
     .exp-role-only { margin-bottom: 0; }
-
-    .exp-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-    }
-
-    .exp-bullets li {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      padding-left: 18px;
-      position: relative;
-    }
-
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .exp-bullets li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; position: relative; }
     .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--text-tertiary); }
-
     .exp-bullets strong { color: var(--text); font-weight: 600; }
-
-    /* ── Skills ── */
     .skills-groups { display: flex; flex-direction: column; gap: 20px; }
-
     .skill-group { display: flex; align-items: baseline; gap: 16px; }
-
-    .skill-group-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-      min-width: 90px;
-      flex-shrink: 0;
-    }
-
+    .skill-group-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); min-width: 90px; flex-shrink: 0; }
     .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-
-    .skill-pill {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 6px 12px;
-    }
-
-    /* ── Contact ── */
-    #contact {
-      position: relative;
-      overflow: hidden;
-      background: #050505;
-    }
-
-    .contact-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-eyebrow {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-tertiary);
-      margin-bottom: 16px;
-    }
-
-    .contact-sub {
-      font-size: 15px;
-      line-height: 1.8;
-      color: var(--text-secondary);
-      margin-bottom: 32px;
-      max-width: 340px;
-    }
-
-    .contact-location {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .location-icon {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--border-strong);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .location-label {
-      font-size: 12px;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .location-value {
-      font-size: 14px;
-      color: var(--text);
-      font-weight: 500;
-      margin-top: 2px;
-    }
-
-    .contact-form-card {
-      background: rgba(18, 18, 18, 0.92);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      background: #1c1c1c;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder { color: #505050; }
-
-    .contact-form input:focus,
-    .contact-form textarea:focus { border-color: var(--border-strong); }
-
-    .contact-form textarea { height: 148px; resize: none; }
-
-    .contact-form button {
-      width: 100%;
-      background: var(--text);
-      color: var(--bg);
-      border: none;
-      border-radius: 10px;
-      padding: 14px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      letter-spacing: -0.01em;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .contact-form button:hover { background: #d8d8d8; transform: translateY(-1px); }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 0 40px;
-      text-align: center;
-    }
-
+    .skill-pill { font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; }
+    .contact-inner { text-align: center; }
+    .contact-sub { font-size: 16px; color: var(--text-secondary); margin-top: -20px; margin-bottom: 40px; }
+    .contact-links { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; }
+    .contact-link { font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: color 0.15s, border-color 0.15s; }
+    .contact-link:hover { color: var(--text); border-bottom-color: var(--text-tertiary); }
+    footer { border-top: 1px solid var(--border); padding: 28px 0 40px; text-align: center; }
     footer p { font-size: 12px; color: var(--text-tertiary); }
-
-    /* ── Responsive ── */
     @media (max-width: 680px) {
       .nav-pill { padding: 4px; }
       .nav-tab { font-size: 11.5px; padding: 6px 10px; }
@@ -537,9 +128,7 @@
       section:not(.hero) { padding: 72px 0; }
       .skill-group { flex-direction: column; gap: 8px; }
       .skill-group-label { min-width: auto; }
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
-
     @media (max-width: 480px) {
       .nav-tab { font-size: 11px; padding: 5px 8px; }
     }
@@ -547,7 +136,9 @@
 </head>
 <body>
 
-  <nav id="main-nav">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <nav id="main-nav" aria-label="Site navigation">
     <ul class="nav-pill">
       <li><a class="nav-tab active" href="#home">Home</a></li>
       <li><a class="nav-tab" href="#about">About</a></li>
@@ -558,199 +149,182 @@
     </ul>
   </nav>
 
-  <section id="home" class="hero">
-    <canvas id="bg-canvas"></canvas>
-    <div class="hero-content">
-      <h1>Hi, I'm Krisvin</h1>
-      <p class="typewriter-line">
-        <span id="typed"></span><span class="cursor">|</span>
-      </p>
-      <div class="hero-btns">
-        <a class="btn btn-primary" href="#projects">View My Work</a>
-        <a class="btn btn-outline" href="mailto:krisvinjoseph21@gmail.com">Get in Touch</a>
-      </div>
-    </div>
-  </section>
+  <main id="main-content">
 
-  <section id="about">
-    <div class="container">
-      <h2 class="section-heading">About Me</h2>
-      <p class="about-text">
-        Builder at heart. I take ideas from zero to production — full-stack apps, ML models,
-        and game engines. I care about security, performance, and shipping things that actually work.
-      </p>
-      <p class="about-text">
-        Currently running Gamesense AI, a sports analytics platform delivering ML-powered insights
-        to 200+ active users. Studying Computer Science at the University of Texas at Dallas.
-      </p>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <h2 class="section-heading">Projects</h2>
-      <div class="projects">
-
-        <a class="project-card" href="https://beat-store-d3iw.vercel.app/" target="_blank" rel="noopener">
-          <div class="project-header">
-            <span class="project-title">PRODKJBEATS</span>
-            <span class="project-arrow">↗</span>
-          </div>
-          <p class="project-desc">
-            Revenue-generating beat store — artists browse licenses and purchase beats via automated Stripe payments, expiring download links, and transactional email delivery.
-          </p>
-          <ul class="project-highlights">
-            <li><strong>100+ sales</strong> and a <strong>35%</strong> repeat-customer rate on a self-built production e-commerce platform</li>
-            <li>Stripe Checkout + signed webhook verification → auto-generated <strong>48-hour</strong> expiring download tokens delivered via transactional email</li>
-            <li>Atomic token claiming (compare-and-swap UPDATE) + <strong>5-minute</strong> Supabase signed URLs — prevents duplicate downloads without exposing client-side credentials</li>
-            <li>PostgreSQL RLS, constant-time HMAC admin auth, IP rate limiter across <strong>6 API routes</strong> → zero abuse incidents post-launch</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Next.js</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Supabase</span>
-            <span class="tag">Stripe</span>
-            <span class="tag">Tailwind</span>
-            <span class="tag">Zustand</span>
-            <span class="tag">PostgreSQL</span>
-          </div>
-        </a>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-title">2D Action Game Engine</span>
-          </div>
-          <p class="project-desc">
-            Modular C# game engine built in Unity — designed from scratch with full separation of concerns across 20+ classes, shipping a playable build in 6 weeks.
-          </p>
-          <ul class="project-highlights">
-            <li><strong>6+ core systems</strong> — input handling, custom physics, enemy AI, health/state management, and level loading — all decoupled and independently extensible</li>
-            <li>Optimized real-time update loops and asset management: <strong>30% frame time reduction</strong>, <strong>25% memory reduction</strong></li>
-            <li>Deployed a companion HTML/CSS site to distribute builds and showcase gameplay</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">C#</span>
-            <span class="tag">Unity</span>
-            <span class="tag">OOP</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="container">
-      <h2 class="section-heading">Experience</h2>
-      <div class="exp-stack">
-        <div class="exp-card">
-          <div class="exp-header">
-            <span class="exp-title">Gamesense AI</span>
-            <span class="exp-date">Nov 2025 – Present</span>
-          </div>
-          <p class="exp-role">Founder &amp; CEO · Remote</p>
-          <ul class="exp-bullets">
-            <li>Built and deployed an ML-powered sports analytics platform using a custom Random Forest model for player stat prediction, surpassing baseline heuristics by <strong>18%</strong> in forecasting accuracy across <strong>5</strong> major sports leagues</li>
-            <li>Engineered an end-to-end data pipeline — web scraping, feature engineering, and real-time inference — delivering predictive performance insights to <strong>200+ active users</strong></li>
-          </ul>
-        </div>
-        <div class="exp-card">
-          <div class="exp-header">
-            <span class="exp-title">The University of Texas at Dallas</span>
-          </div>
-          <p class="exp-role exp-role-only">B.S. Computer Science</p>
+    <section id="home" class="hero">
+      <canvas id="bg-canvas"></canvas>
+      <div class="hero-content">
+        <h1>Hi, I'm Krisvin</h1>
+        <p class="typewriter-line">
+          <span id="typed"></span><span class="cursor" aria-hidden="true">|</span>
+        </p>
+        <div class="hero-btns">
+          <a class="btn btn-primary" href="#projects">View My Work</a>
+          <a class="btn btn-outline" href="mailto:krisvinjoseph21@gmail.com">Get in Touch</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="skills">
-    <div class="container">
-      <h2 class="section-heading">Skills</h2>
-      <div class="skills-groups">
-        <div class="skill-group">
-          <span class="skill-group-label">Languages</span>
-          <div class="skill-pills">
-            <span class="skill-pill">Python</span>
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">TypeScript</span>
-            <span class="skill-pill">Java</span>
-            <span class="skill-pill">C++</span>
-            <span class="skill-pill">C#</span>
-            <span class="skill-pill">Go</span>
-            <span class="skill-pill">Rust</span>
-            <span class="skill-pill">Swift</span>
-            <span class="skill-pill">SQL</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-label">Frameworks</span>
-          <div class="skill-pills">
-            <span class="skill-pill">React</span>
-            <span class="skill-pill">Next.js</span>
-            <span class="skill-pill">Node.js</span>
-            <span class="skill-pill">Flask</span>
-            <span class="skill-pill">FastAPI</span>
-            <span class="skill-pill">TensorFlow</span>
-            <span class="skill-pill">PyTorch</span>
-            <span class="skill-pill">Tailwind</span>
-            <span class="skill-pill">Unity</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-label">Tools</span>
-          <div class="skill-pills">
-            <span class="skill-pill">PostgreSQL</span>
-            <span class="skill-pill">Supabase</span>
-            <span class="skill-pill">Stripe</span>
-            <span class="skill-pill">Docker</span>
-            <span class="skill-pill">AWS</span>
-            <span class="skill-pill">Firebase</span>
-            <span class="skill-pill">Azure</span>
-            <span class="skill-pill">Git</span>
-            <span class="skill-pill">Linux</span>
-          </div>
-        </div>
+    <section id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading" class="section-heading">About Me</h2>
+        <p class="about-text">
+          Builder at heart. I take ideas from zero to production — full-stack apps, ML models,
+          and game engines. I care about security, performance, and shipping things that actually work.
+        </p>
+        <p class="about-text">
+          Currently running Gamesense AI, a sports analytics platform delivering ML-powered insights
+          to 200+ active users. Studying Computer Science at the University of Texas at Dallas.
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contact">
-    <canvas class="contact-canvas" id="contact-canvas"></canvas>
-    <div class="container">
-      <div class="contact-grid">
-        <div>
-          <span class="contact-eyebrow">Contact</span>
-          <h2 class="section-heading">Get In Touch</h2>
-          <p class="contact-sub">I'm always looking to learn and collaborate on new ideas. Let's connect!</p>
-          <div class="contact-location">
-            <div class="location-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-secondary)">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
+    <section id="projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 id="projects-heading" class="section-heading">Projects</h2>
+        <div class="projects">
+
+          <a class="project-card" href="https://beat-store-d3iw.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <div class="project-header">
+              <span class="project-title">PRODKJBEATS</span>
+              <span class="project-arrow" aria-hidden="true">↗</span>
             </div>
-            <div>
-              <div class="location-label">Location</div>
-              <div class="location-value">Frisco, TX</div>
+            <p class="project-desc">
+              Revenue-generating beat store — artists browse licenses and purchase beats via automated Stripe payments, expiring download links, and transactional email delivery.
+            </p>
+            <ul class="project-highlights">
+              <li><strong>100+ sales</strong> and a <strong>35%</strong> repeat-customer rate on a self-built production e-commerce platform</li>
+              <li>Stripe Checkout + signed webhook verification → auto-generated <strong>48-hour</strong> expiring download tokens delivered via transactional email</li>
+              <li>Atomic token claiming (compare-and-swap UPDATE) + <strong>5-minute</strong> Supabase signed URLs — prevents duplicate downloads without exposing client-side credentials</li>
+              <li>PostgreSQL RLS, constant-time HMAC admin auth, IP rate limiter across <strong>6 API routes</strong> → zero abuse incidents post-launch</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Stripe</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">Zustand</span>
+              <span class="tag">PostgreSQL</span>
+            </div>
+          </a>
+
+          <div class="project-card">
+            <div class="project-header">
+              <span class="project-title">2D Action Game Engine</span>
+            </div>
+            <p class="project-desc">
+              Modular C# game engine built in Unity — designed from scratch with full separation of concerns across 20+ classes, shipping a playable build in 6 weeks.
+            </p>
+            <ul class="project-highlights">
+              <li><strong>6+ core systems</strong> — input handling, custom physics, enemy AI, health/state management, and level loading — all decoupled and independently extensible</li>
+              <li>Optimized real-time update loops and asset management: <strong>30% frame time reduction</strong>, <strong>25% memory reduction</strong></li>
+              <li>Deployed a companion HTML/CSS site to distribute builds and showcase gameplay</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">C#</span>
+              <span class="tag">Unity</span>
+              <span class="tag">OOP</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-heading">
+      <div class="container">
+        <h2 id="experience-heading" class="section-heading">Experience</h2>
+        <div class="exp-stack">
+          <div class="exp-card">
+            <div class="exp-header">
+              <span class="exp-title">Gamesense AI</span>
+              <span class="exp-date"><time datetime="2025-11">Nov 2025</time> – Present</span>
+            </div>
+            <p class="exp-role">Founder &amp; CEO · Remote</p>
+            <ul class="exp-bullets">
+              <li>Built and deployed an ML-powered sports analytics platform using a custom Random Forest model for player stat prediction, surpassing baseline heuristics by <strong>18%</strong> in forecasting accuracy across <strong>5</strong> major sports leagues</li>
+              <li>Engineered an end-to-end data pipeline — web scraping, feature engineering, and real-time inference — delivering predictive performance insights to <strong>200+ active users</strong></li>
+            </ul>
+          </div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <span class="exp-title">The University of Texas at Dallas</span>
+            </div>
+            <p class="exp-role exp-role-only">B.S. Computer Science</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-heading">
+      <div class="container">
+        <h2 id="skills-heading" class="section-heading">Skills</h2>
+        <div class="skills-groups">
+          <div class="skill-group">
+            <span class="skill-group-label">Languages</span>
+            <div class="skill-pills">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">TypeScript</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">C++</span>
+              <span class="skill-pill">C#</span>
+              <span class="skill-pill">Go</span>
+              <span class="skill-pill">Rust</span>
+              <span class="skill-pill">Swift</span>
+              <span class="skill-pill">SQL</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <span class="skill-group-label">Frameworks</span>
+            <div class="skill-pills">
+              <span class="skill-pill">React</span>
+              <span class="skill-pill">Next.js</span>
+              <span class="skill-pill">Node.js</span>
+              <span class="skill-pill">Flask</span>
+              <span class="skill-pill">FastAPI</span>
+              <span class="skill-pill">TensorFlow</span>
+              <span class="skill-pill">PyTorch</span>
+              <span class="skill-pill">Tailwind</span>
+              <span class="skill-pill">Unity</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <span class="skill-group-label">Tools</span>
+            <div class="skill-pills">
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">Supabase</span>
+              <span class="skill-pill">Stripe</span>
+              <span class="skill-pill">Docker</span>
+              <span class="skill-pill">AWS</span>
+              <span class="skill-pill">Firebase</span>
+              <span class="skill-pill">Azure</span>
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">Linux</span>
             </div>
           </div>
         </div>
-        <div class="contact-form-card">
-          <form class="contact-form" id="contact-form">
-            <input type="text" id="cf-name" placeholder="Name" required />
-            <input type="email" id="cf-email" placeholder="Email" required />
-            <textarea id="cf-message" placeholder="Your message..." required></textarea>
-            <button type="submit">Send message</button>
-          </form>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container contact-inner">
+        <h2 id="contact-heading" class="section-heading">Get In Touch</h2>
+        <p class="contact-sub">Open to internships, collaborations, and interesting projects.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:krisvinjoseph21@gmail.com">Email ↗</a>
+          <a class="contact-link" href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <footer>
     <div class="container">
-      <p>Krisvin Joseph · Dallas, TX · 2026</p>
+      <p>Krisvin Joseph · Dallas, TX · <time datetime="2026">2026</time></p>
     </div>
   </footer>
 
@@ -826,63 +400,6 @@
       if (del  && ci === 0)          { del = false; pi = (pi + 1) % phrases.length; }
       setTimeout(type, del ? 38 : 78);
     })();
-
-    // ── Contact section canvas ──
-    (function() {
-      const cc = document.getElementById('contact-canvas');
-      const cx = cc.getContext('2d');
-      let cp = [];
-      const CN = 55, CL = 140;
-
-      function cResize() {
-        cc.width  = cc.offsetWidth;
-        cc.height = cc.offsetHeight;
-      }
-
-      function cMkPts() {
-        cp = Array.from({ length: CN }, () => ({
-          x: Math.random() * cc.width,  y: Math.random() * cc.height,
-          vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
-          r: Math.random() * 1.1 + 0.4
-        }));
-      }
-
-      function cFrame() {
-        cx.clearRect(0, 0, cc.width, cc.height);
-        for (const p of cp) {
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0 || p.x > cc.width)  p.vx *= -1;
-          if (p.y < 0 || p.y > cc.height) p.vy *= -1;
-          cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          cx.fillStyle = 'rgba(255,255,255,0.18)'; cx.fill();
-        }
-        for (let i = 0; i < cp.length; i++) {
-          for (let j = i + 1; j < cp.length; j++) {
-            const d = Math.hypot(cp[i].x - cp[j].x, cp[i].y - cp[j].y);
-            if (d < CL) {
-              cx.beginPath(); cx.moveTo(cp[i].x, cp[i].y); cx.lineTo(cp[j].x, cp[j].y);
-              cx.strokeStyle = `rgba(255,255,255,${(1 - d / CL) * 0.09})`;
-              cx.lineWidth = 0.5; cx.stroke();
-            }
-          }
-        }
-        requestAnimationFrame(cFrame);
-      }
-
-      window.addEventListener('resize', () => { cResize(); cMkPts(); });
-      cResize(); cMkPts(); cFrame();
-    })();
-
-    // ── Contact form → mailto ──
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name    = document.getElementById('cf-name').value.trim();
-      const email   = document.getElementById('cf-email').value.trim();
-      const message = document.getElementById('cf-message').value.trim();
-      const subject = encodeURIComponent('Portfolio Contact from ' + name);
-      const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
-      window.location.href = 'mailto:krisvinjoseph21@gmail.com?subject=' + subject + '&body=' + body;
-    });
 
     // ── Active nav highlight on scroll ──
     const sections = document.querySelectorAll('section[id]');
