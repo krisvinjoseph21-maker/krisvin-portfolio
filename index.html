@@ -113,11 +113,23 @@
     .skill-group-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); min-width: 90px; flex-shrink: 0; }
     .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .skill-pill { font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; }
-    .contact-inner { text-align: center; }
-    .contact-sub { font-size: 16px; color: var(--text-secondary); margin-top: -20px; margin-bottom: 40px; }
-    .contact-links { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; }
-    .contact-link { font-size: 15px; font-weight: 500; color: var(--text-secondary); text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: color 0.15s, border-color 0.15s; }
-    .contact-link:hover { color: var(--text); border-bottom-color: var(--text-tertiary); }
+    #contact { position: relative; overflow: hidden; background: #060608; }
+    .contact-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 1; }
+    .contact-eyebrow { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 16px; }
+    .contact-sub { font-size: 15px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 32px; max-width: 340px; }
+    .contact-location { display: flex; align-items: center; gap: 14px; }
+    .location-icon { width: 40px; height: 40px; border: 1px solid var(--border-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .location-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
+    .location-value { font-size: 14px; color: var(--text); font-weight: 500; margin-top: 2px; }
+    .contact-form-card { background: rgba(16,16,18,0.88); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 28px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .contact-form { display: flex; flex-direction: column; gap: 12px; }
+    .contact-form input, .contact-form textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 10px; padding: 14px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: #4a4a4a; }
+    .contact-form input:focus, .contact-form textarea:focus { border-color: rgba(255,255,255,0.2); }
+    .contact-form textarea { height: 148px; resize: none; }
+    .contact-form button { width: 100%; background: var(--text); color: var(--bg); border: none; border-radius: 10px; padding: 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; letter-spacing: -0.01em; transition: background 0.2s, transform 0.15s; }
+    .contact-form button:hover { background: #d8d8d8; transform: translateY(-1px); }
     footer { border-top: 1px solid var(--border); padding: 28px 0 40px; text-align: center; }
     footer p { font-size: 12px; color: var(--text-tertiary); }
     @media (max-width: 680px) {
@@ -128,6 +140,7 @@
       section:not(.hero) { padding: 72px 0; }
       .skill-group { flex-direction: column; gap: 8px; }
       .skill-group-label { min-width: auto; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 480px) {
       .nav-tab { font-size: 11px; padding: 5px 8px; }
@@ -432,13 +445,34 @@
     </section>
 
     <section id="contact" aria-labelledby="contact-heading">
-      <div class="container contact-inner">
-        <h2 id="contact-heading" class="section-heading">Get In Touch</h2>
-        <p class="contact-sub">Open to internships, collaborations, and interesting projects.</p>
-        <div class="contact-links">
-          <a class="contact-link" href="mailto:krisvinjoseph21@gmail.com">Email ↗</a>
-          <a class="contact-link" href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="contact-link" href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <canvas class="contact-canvas" id="contact-canvas"></canvas>
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="contact-eyebrow">Contact</span>
+            <h2 id="contact-heading" class="section-heading">Get In Touch</h2>
+            <p class="contact-sub">I'm always looking to learn and collaborate on new ideas. Let's connect!</p>
+            <div class="contact-location">
+              <div class="location-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-secondary)">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="location-label">Location</div>
+                <div class="location-value">Frisco, TX</div>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form-card">
+            <form class="contact-form" id="contact-form">
+              <input type="text" id="cf-name" placeholder="Name" required />
+              <input type="email" id="cf-email" placeholder="Email" required />
+              <textarea id="cf-message" placeholder="Your message..." required></textarea>
+              <button type="submit">Send message</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -559,6 +593,66 @@
       if (del  && ci === 0)          { del = false; pi = (pi + 1) % phrases.length; }
       setTimeout(type, del ? 38 : 78);
     })();
+
+    // ── Contact low-poly background ──
+    (function () {
+      const cc = document.getElementById('contact-canvas');
+      const cx = cc.getContext('2d');
+
+      function build() {
+        cc.width  = cc.offsetWidth;
+        cc.height = cc.offsetHeight;
+        const W = cc.width, H = cc.height;
+        const COLS = 14, ROWS = 9;
+        const cw = W / (COLS - 1), ch = H / (ROWS - 1);
+        const pts = [];
+
+        for (let r = 0; r < ROWS; r++) {
+          for (let c = 0; c < COLS; c++) {
+            const edge = r === 0 || r === ROWS-1 || c === 0 || c === COLS-1;
+            pts.push({
+              x: c * cw + (edge ? 0 : (Math.random()-0.5) * cw * 0.7),
+              y: r * ch + (edge ? 0 : (Math.random()-0.5) * ch * 0.7)
+            });
+          }
+        }
+
+        cx.clearRect(0, 0, W, H);
+        for (let r = 0; r < ROWS-1; r++) {
+          for (let c = 0; c < COLS-1; c++) {
+            const i = r * COLS + c;
+            const tl = pts[i], tr = pts[i+1], bl = pts[i+COLS], br = pts[i+COLS+1];
+            [[tl,tr,bl],[tr,br,bl]].forEach(function(tri) {
+              const v = 12 + Math.random() * 18;
+              cx.beginPath();
+              cx.moveTo(tri[0].x, tri[0].y);
+              cx.lineTo(tri[1].x, tri[1].y);
+              cx.lineTo(tri[2].x, tri[2].y);
+              cx.closePath();
+              cx.fillStyle = 'rgb('+v+','+v+','+(v+2)+')';
+              cx.fill();
+              cx.strokeStyle = 'rgba(0,0,0,0.35)';
+              cx.lineWidth = 0.6;
+              cx.stroke();
+            });
+          }
+        }
+      }
+
+      build();
+      window.addEventListener('resize', build);
+    })();
+
+    // ── Contact form → mailto ──
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name    = document.getElementById('cf-name').value.trim();
+      const email   = document.getElementById('cf-email').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+      const subject = encodeURIComponent('Portfolio Contact from ' + name);
+      const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = 'mailto:krisvinjoseph21@gmail.com?subject=' + subject + '&body=' + body;
+    });
 
     // ── Active nav highlight on scroll ──
     const sections = document.querySelectorAll('section[id]');
