@@ -132,9 +132,131 @@
     @media (max-width: 480px) {
       .nav-tab { font-size: 11px; padding: 5px 8px; }
     }
+
+    /* ── Loader ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.6s ease;
+    }
+
+    #loader::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px,
+        rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px
+      );
+      pointer-events: none;
+    }
+
+    #loader.done { opacity: 0; pointer-events: none; }
+
+    .loader-corner {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+    }
+
+    .loader-corner::before,
+    .loader-corner::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .loader-corner::before { width: 100%; height: 1px; top: 0; left: 0; }
+    .loader-corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
+
+    .loader-corner.tl { top: 28px; left: 28px; }
+    .loader-corner.tr { top: 28px; right: 28px; transform: scaleX(-1); }
+    .loader-corner.bl { bottom: 28px; left: 28px; transform: scaleY(-1); }
+    .loader-corner.br { bottom: 28px; right: 28px; transform: scale(-1); }
+
+    .loader-inner {
+      text-align: center;
+      width: min(400px, calc(100vw - 48px));
+    }
+
+    .loader-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(22px, 4.5vw, 34px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #fff;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .loader-sub {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.28);
+      text-transform: uppercase;
+      margin-bottom: 44px;
+    }
+
+    .loader-bar-track {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .loader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      border-radius: 2px;
+      position: relative;
+      box-shadow: 0 0 10px 2px rgba(255,255,255,0.45);
+    }
+
+    .loader-pct {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 8px;
+    }
+
+    .loader-status {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
   </style>
 </head>
 <body>
+
+  <div id="loader" aria-hidden="true">
+    <span class="loader-corner tl"></span>
+    <span class="loader-corner tr"></span>
+    <span class="loader-corner bl"></span>
+    <span class="loader-corner br"></span>
+    <div class="loader-inner">
+      <div class="loader-name">Krisvin Joseph</div>
+      <div class="loader-sub">Portfolio</div>
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill" id="loader-bar"></div>
+      </div>
+      <div class="loader-pct" id="loader-pct">0%</div>
+      <div class="loader-status" id="loader-status">Initializing...</div>
+    </div>
+  </div>
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
@@ -329,6 +451,40 @@
   </footer>
 
   <script>
+    // ── Loading screen ──
+    (function () {
+      const loader  = document.getElementById('loader');
+      const bar     = document.getElementById('loader-bar');
+      const pctEl   = document.getElementById('loader-pct');
+      const statusEl= document.getElementById('loader-status');
+      const DURATION = 2000;
+      const start    = performance.now();
+
+      function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+
+      function status(p) {
+        if (p < 30)  return 'Initializing...';
+        if (p < 65)  return 'Loading assets...';
+        if (p < 95)  return 'Almost ready...';
+        return 'Complete';
+      }
+
+      function tick(now) {
+        const t = Math.min((now - start) / DURATION, 1);
+        const p = Math.round(ease(t) * 100);
+        bar.style.width    = p + '%';
+        pctEl.textContent  = p + '%';
+        statusEl.textContent = status(p);
+        if (t < 1) { requestAnimationFrame(tick); return; }
+        setTimeout(function () {
+          loader.classList.add('done');
+          setTimeout(function () { loader.remove(); }, 650);
+        }, 220);
+      }
+
+      requestAnimationFrame(tick);
+    })();
+
     // ── Particle mesh background ──
     const canvas = document.getElementById('bg-canvas');
     const ctx    = canvas.getContext('2d');
