@@ -396,28 +396,128 @@
     }
 
     /* ── Contact ── */
-    .contact-inner { text-align: center; }
+    #contact {
+      position: relative;
+      overflow: hidden;
+      background: #050505;
+    }
+
+    .contact-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+    }
 
     .contact-sub {
-      font-size: 16px;
-      color: var(--text-secondary);
-      margin-top: -20px;
-      margin-bottom: 40px;
-    }
-
-    .contact-links { display: flex; gap: 36px; justify-content: center; flex-wrap: wrap; }
-
-    .contact-link {
       font-size: 15px;
-      font-weight: 500;
+      line-height: 1.8;
       color: var(--text-secondary);
-      text-decoration: none;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
+      margin-bottom: 32px;
+      max-width: 340px;
     }
 
-    .contact-link:hover { color: var(--text); border-bottom-color: var(--text-tertiary); }
+    .contact-location {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .location-icon {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border-strong);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .location-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .location-value {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .contact-form-card {
+      background: rgba(18, 18, 18, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: #1c1c1c;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #505050; }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--border-strong); }
+
+    .contact-form textarea { height: 148px; resize: none; }
+
+    .contact-form button {
+      width: 100%;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .contact-form button:hover { background: #d8d8d8; transform: translateY(-1px); }
 
     /* ── Footer ── */
     footer {
@@ -437,6 +537,7 @@
       section:not(.hero) { padding: 72px 0; }
       .skill-group { flex-direction: column; gap: 8px; }
       .skill-group-label { min-width: auto; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
 
     @media (max-width: 480px) {
@@ -615,13 +716,34 @@
   </section>
 
   <section id="contact">
-    <div class="container contact-inner">
-      <h2 class="section-heading">Get In Touch</h2>
-      <p class="contact-sub">Open to internships, collaborations, and interesting projects.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="mailto:krisvinjoseph21@gmail.com">Email ↗</a>
-        <a class="contact-link" href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="contact-link" href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <canvas class="contact-canvas" id="contact-canvas"></canvas>
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <span class="contact-eyebrow">Contact</span>
+          <h2 class="section-heading">Get In Touch</h2>
+          <p class="contact-sub">I'm always looking to learn and collaborate on new ideas. Let's connect!</p>
+          <div class="contact-location">
+            <div class="location-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-secondary)">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="location-label">Location</div>
+              <div class="location-value">Frisco, TX</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-card">
+          <form class="contact-form" id="contact-form">
+            <input type="text" id="cf-name" placeholder="Name" required />
+            <input type="email" id="cf-email" placeholder="Email" required />
+            <textarea id="cf-message" placeholder="Your message..." required></textarea>
+            <button type="submit">Send message</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -704,6 +826,63 @@
       if (del  && ci === 0)          { del = false; pi = (pi + 1) % phrases.length; }
       setTimeout(type, del ? 38 : 78);
     })();
+
+    // ── Contact section canvas ──
+    (function() {
+      const cc = document.getElementById('contact-canvas');
+      const cx = cc.getContext('2d');
+      let cp = [];
+      const CN = 55, CL = 140;
+
+      function cResize() {
+        cc.width  = cc.offsetWidth;
+        cc.height = cc.offsetHeight;
+      }
+
+      function cMkPts() {
+        cp = Array.from({ length: CN }, () => ({
+          x: Math.random() * cc.width,  y: Math.random() * cc.height,
+          vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.22,
+          r: Math.random() * 1.1 + 0.4
+        }));
+      }
+
+      function cFrame() {
+        cx.clearRect(0, 0, cc.width, cc.height);
+        for (const p of cp) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > cc.width)  p.vx *= -1;
+          if (p.y < 0 || p.y > cc.height) p.vy *= -1;
+          cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          cx.fillStyle = 'rgba(255,255,255,0.18)'; cx.fill();
+        }
+        for (let i = 0; i < cp.length; i++) {
+          for (let j = i + 1; j < cp.length; j++) {
+            const d = Math.hypot(cp[i].x - cp[j].x, cp[i].y - cp[j].y);
+            if (d < CL) {
+              cx.beginPath(); cx.moveTo(cp[i].x, cp[i].y); cx.lineTo(cp[j].x, cp[j].y);
+              cx.strokeStyle = `rgba(255,255,255,${(1 - d / CL) * 0.09})`;
+              cx.lineWidth = 0.5; cx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(cFrame);
+      }
+
+      window.addEventListener('resize', () => { cResize(); cMkPts(); });
+      cResize(); cMkPts(); cFrame();
+    })();
+
+    // ── Contact form → mailto ──
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name    = document.getElementById('cf-name').value.trim();
+      const email   = document.getElementById('cf-email').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+      const subject = encodeURIComponent('Portfolio Contact from ' + name);
+      const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = 'mailto:krisvinjoseph21@gmail.com?subject=' + subject + '&body=' + body;
+    });
 
     // ── Active nav highlight on scroll ──
     const sections = document.querySelectorAll('section[id]');
