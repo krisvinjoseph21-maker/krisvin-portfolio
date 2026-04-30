@@ -522,8 +522,7 @@
       const bar     = document.getElementById('loader-bar');
       const pctEl   = document.getElementById('loader-pct');
       const statusEl= document.getElementById('loader-status');
-      const DURATION = 600;
-      const start    = performance.now();
+      const DURATION = 1100;
 
       function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
 
@@ -534,20 +533,22 @@
         return 'Complete';
       }
 
-      function tick(now) {
-        const t = Math.min((now - start) / DURATION, 1);
-        const p = Math.round(ease(t) * 100);
-        bar.style.width    = p + '%';
-        pctEl.textContent  = p + '%';
-        statusEl.textContent = status(p);
-        if (t < 1) { requestAnimationFrame(tick); return; }
-        setTimeout(function () {
-          loader.classList.add('done');
-          setTimeout(function () { loader.remove(); }, 650);
-        }, 220);
-      }
-
-      requestAnimationFrame(tick);
+      document.fonts.ready.then(function () {
+        const start = performance.now();
+        function tick(now) {
+          const t = Math.min((now - start) / DURATION, 1);
+          const p = Math.round(ease(t) * 100);
+          bar.style.width    = p + '%';
+          pctEl.textContent  = p + '%';
+          statusEl.textContent = status(p);
+          if (t < 1) { requestAnimationFrame(tick); return; }
+          setTimeout(function () {
+            loader.classList.add('done');
+            setTimeout(function () { loader.remove(); }, 650);
+          }, 220);
+        }
+        requestAnimationFrame(tick);
+      });
     })();
 
     // ── Particle mesh background ──
