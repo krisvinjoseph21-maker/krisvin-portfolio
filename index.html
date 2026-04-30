@@ -114,11 +114,14 @@
     .exp-bullets li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; position: relative; }
     .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--text-tertiary); }
     .exp-bullets strong { color: var(--text); font-weight: 600; }
-    .skills-groups { display: flex; flex-direction: column; gap: 20px; }
-    .skill-group { display: flex; align-items: baseline; gap: 16px; }
-    .skill-group-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); min-width: 90px; flex-shrink: 0; }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .skill-pill { font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; }
+    .skills-groups { display: flex; flex-direction: column; gap: 40px; }
+    .skill-group { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: start; }
+    .skill-group-label { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2.8vw, 26px); font-weight: 700; letter-spacing: -0.02em; color: var(--text); padding-top: 6px; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-pill { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.04); border: 1px solid var(--border-strong); border-radius: 50px; padding: 7px 14px 7px 10px; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s, border-color 0.2s, color 0.2s; }
+    .skill-pill:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22); color: #fff; }
+    .skill-pill img { width: 18px; height: 18px; flex-shrink: 0; display: block; }
+    .skill-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 1; }
     .contact-eyebrow { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 16px; }
     .contact-sub { font-size: 15px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 32px; max-width: 340px; }
@@ -148,8 +151,7 @@
       .exp-header { flex-direction: column; align-items: flex-start; gap: 2px; }
       .project-card, .exp-card { padding: 20px; }
       section:not(.hero) { padding: 72px 0; }
-      .skill-group { flex-direction: column; gap: 8px; }
-      .skill-group-label { min-width: auto; }
+      .skill-group { grid-template-columns: 1fr; gap: 12px; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     }
     @media (max-width: 480px) {
@@ -476,47 +478,47 @@
 
     <section id="skills" aria-labelledby="skills-heading">
       <div class="container">
-        <h2 id="skills-heading" class="section-heading">Skills</h2>
+        <h2 id="skills-heading" class="section-heading">My Stack</h2>
         <div class="skills-groups">
           <div class="skill-group">
             <span class="skill-group-label">Languages</span>
             <div class="skill-pills">
-              <span class="skill-pill">Python</span>
-              <span class="skill-pill">JavaScript</span>
-              <span class="skill-pill">TypeScript</span>
-              <span class="skill-pill">Java</span>
-              <span class="skill-pill">C++</span>
-              <span class="skill-pill">C#</span>
-              <span class="skill-pill">Go</span>
-              <span class="skill-pill">Rust</span>
-              <span class="skill-pill">Swift</span>
-              <span class="skill-pill">SQL</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/python" alt="" loading="lazy">Python</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/javascript" alt="" loading="lazy">JavaScript</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/typescript" alt="" loading="lazy">TypeScript</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/openjdk" alt="" loading="lazy">Java</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/cplusplus" alt="" loading="lazy">C++</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/csharp" alt="" loading="lazy">C#</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/go" alt="" loading="lazy">Go</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/rust/ce412b" alt="" loading="lazy">Rust</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/swift" alt="" loading="lazy">Swift</span>
+              <span class="skill-pill"><svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4"/></svg>SQL</span>
             </div>
           </div>
           <div class="skill-group">
             <span class="skill-group-label">Frameworks</span>
             <div class="skill-pills">
-              <span class="skill-pill">React</span>
-              <span class="skill-pill">Next.js</span>
-              <span class="skill-pill">Node.js</span>
-              <span class="skill-pill">FastAPI</span>
-              <span class="skill-pill">PyTorch</span>
-              <span class="skill-pill">Tailwind</span>
-              <span class="skill-pill">Unity</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/react" alt="" loading="lazy">React</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/nextdotjs/ffffff" alt="" loading="lazy">Next.js</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/nodedotjs" alt="" loading="lazy">Node.js</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/fastapi" alt="" loading="lazy">FastAPI</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/pytorch" alt="" loading="lazy">PyTorch</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/tailwindcss" alt="" loading="lazy">Tailwind</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/unity/aaaaaa" alt="" loading="lazy">Unity</span>
             </div>
           </div>
           <div class="skill-group">
             <span class="skill-group-label">Tools</span>
             <div class="skill-pills">
-              <span class="skill-pill">PostgreSQL</span>
-              <span class="skill-pill">Supabase</span>
-              <span class="skill-pill">Stripe</span>
-              <span class="skill-pill">Docker</span>
-              <span class="skill-pill">AWS</span>
-              <span class="skill-pill">Firebase</span>
-              <span class="skill-pill">Azure</span>
-              <span class="skill-pill">Git</span>
-              <span class="skill-pill">Linux</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/postgresql" alt="" loading="lazy">PostgreSQL</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/supabase" alt="" loading="lazy">Supabase</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/stripe" alt="" loading="lazy">Stripe</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/docker" alt="" loading="lazy">Docker</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/amazonwebservices/ff9900" alt="" loading="lazy">AWS</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/firebase" alt="" loading="lazy">Firebase</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/microsoftazure" alt="" loading="lazy">Azure</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/git" alt="" loading="lazy">Git</span>
+              <span class="skill-pill"><img src="https://cdn.simpleicons.org/linux/fcc624" alt="" loading="lazy">Linux</span>
             </div>
           </div>
         </div>
