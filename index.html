@@ -119,8 +119,7 @@
     .skill-group-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-tertiary); min-width: 90px; flex-shrink: 0; }
     .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .skill-pill { font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; }
-    #contact { position: relative; overflow: hidden; }
-    .contact-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    #contact { background: #060608; }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; position: relative; z-index: 1; }
     .contact-eyebrow { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 16px; }
     .contact-sub { font-size: 15px; line-height: 1.8; color: var(--text-secondary); margin-bottom: 32px; max-width: 340px; }
@@ -272,18 +271,9 @@
 
     /* ── Quote section ── */
     #quote-section {
-      position: relative;
-      overflow: hidden;
       background: #050507;
       padding: 100px 0;
       border-top: 1px solid var(--border);
-    }
-    .quote-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
     }
     .quote-inner {
       position: relative;
@@ -540,7 +530,6 @@
     </section>
 
     <section id="contact" aria-labelledby="contact-heading">
-      <canvas class="contact-canvas" id="contact-canvas"></canvas>
       <div class="container">
         <div class="contact-grid">
           <div>
@@ -584,7 +573,6 @@
     </section>
 
     <section id="quote-section" aria-label="Quote of the day">
-      <canvas class="quote-canvas" id="quote-canvas"></canvas>
       <div class="quote-inner">
         <svg class="quote-icon" width="44" height="36" viewBox="0 0 44 36" fill="currentColor" aria-hidden="true">
           <path d="M0 36V22.5C0 14.1 5.4 7.2 16.2 1.8L19.8 7.2C14.1 10.2 10.8 13.8 9.9 18H18V36H0ZM26 36V22.5C26 14.1 31.4 7.2 42.2 1.8L45.8 7.2C40.1 10.2 36.8 13.8 35.9 18H44V36H26Z"/>
@@ -724,92 +712,6 @@
       })();
     }
 
-    // ── Contact low-poly background (with inverse mouse parallax) ──
-    (function () {
-      const cc = document.getElementById('contact-canvas');
-      const cx = cc.getContext('2d');
-
-      const MARGIN   = 30;
-      const PARALLAX = 15;
-      const LERP     = 0.05;
-
-      let triangles = [];
-      let tx = 0, ty = 0;
-      let cxOff = 0, cyOff = 0;
-
-      function build() {
-        cc.width  = cc.offsetWidth;
-        cc.height = cc.offsetHeight;
-        const W = cc.width, H = cc.height;
-        const COLS = 14, ROWS = 9;
-
-        const cw = (W + MARGIN * 2) / (COLS - 1);
-        const ch = (H + MARGIN * 2) / (ROWS - 1);
-        const pts = [];
-
-        for (let r = 0; r < ROWS; r++) {
-          for (let c = 0; c < COLS; c++) {
-            const edge = r === 0 || r === ROWS-1 || c === 0 || c === COLS-1;
-            pts.push({
-              x: -MARGIN + c * cw + (edge ? 0 : (Math.random()-0.5) * cw * 0.7),
-              y: -MARGIN + r * ch + (edge ? 0 : (Math.random()-0.5) * ch * 0.7)
-            });
-          }
-        }
-
-        triangles = [];
-        for (let r = 0; r < ROWS-1; r++) {
-          for (let c = 0; c < COLS-1; c++) {
-            const i = r * COLS + c;
-            const tl = pts[i], tr = pts[i+1], bl = pts[i+COLS], br = pts[i+COLS+1];
-            [[tl,tr,bl],[tr,br,bl]].forEach(function(tri) {
-              const v = 12 + Math.random() * 18;
-              triangles.push({ tri: tri, color: 'rgb('+v+','+v+','+(v+2)+')' });
-            });
-          }
-        }
-      }
-
-      function draw() {
-        cx.clearRect(0, 0, cc.width, cc.height);
-        cx.save();
-        cx.translate(cxOff, cyOff);
-        for (const t of triangles) {
-          cx.beginPath();
-          cx.moveTo(t.tri[0].x, t.tri[0].y);
-          cx.lineTo(t.tri[1].x, t.tri[1].y);
-          cx.lineTo(t.tri[2].x, t.tri[2].y);
-          cx.closePath();
-          cx.fillStyle = t.color;
-          cx.fill();
-          cx.strokeStyle = 'rgba(0,0,0,0.35)';
-          cx.lineWidth = 0.6;
-          cx.stroke();
-        }
-        cx.restore();
-      }
-
-      function tick() {
-        cxOff += (tx - cxOff) * LERP;
-        cyOff += (ty - cyOff) * LERP;
-        draw();
-        requestAnimationFrame(tick);
-      }
-
-      window.addEventListener('mousemove', function (e) {
-        const nx = (e.clientX / window.innerWidth)  * 2 - 1;
-        const ny = (e.clientY / window.innerHeight) * 2 - 1;
-        tx = -nx * PARALLAX;
-        ty = -ny * PARALLAX;
-      });
-
-      window.addEventListener('resize', build);
-      build();
-
-      if (PRM) draw();
-      else     tick();
-    })();
-
     // ── Contact form → Formspree ──
     document.getElementById('contact-form').addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -914,61 +816,6 @@
         show(idx);
       });
 
-      // Low-poly canvas background for quote section
-      const qc = document.getElementById('quote-canvas');
-      const qx = qc.getContext('2d');
-      const QMARGIN = 30;
-      let qtris = [];
-
-      function buildQ() {
-        qc.width  = qc.offsetWidth;
-        qc.height = qc.offsetHeight;
-        const W = qc.width, H = qc.height;
-        const COLS = 14, ROWS = 8;
-        const cw = (W + QMARGIN * 2) / (COLS - 1);
-        const ch = (H + QMARGIN * 2) / (ROWS - 1);
-        const pts = [];
-        for (let r = 0; r < ROWS; r++) {
-          for (let c = 0; c < COLS; c++) {
-            const edge = r === 0 || r === ROWS-1 || c === 0 || c === COLS-1;
-            pts.push({
-              x: -QMARGIN + c * cw + (edge ? 0 : (Math.random()-0.5) * cw * 0.7),
-              y: -QMARGIN + r * ch + (edge ? 0 : (Math.random()-0.5) * ch * 0.7)
-            });
-          }
-        }
-        qtris = [];
-        for (let r = 0; r < ROWS-1; r++) {
-          for (let c = 0; c < COLS-1; c++) {
-            const i = r * COLS + c;
-            const tl = pts[i], tr = pts[i+1], bl = pts[i+COLS], br = pts[i+COLS+1];
-            [[tl,tr,bl],[tr,br,bl]].forEach(function(tri) {
-              const v = 9 + Math.random() * 14;
-              qtris.push({ tri, color: 'rgb('+v+','+v+','+(v+2)+')' });
-            });
-          }
-        }
-        drawQ();
-      }
-
-      function drawQ() {
-        qx.clearRect(0, 0, qc.width, qc.height);
-        for (const t of qtris) {
-          qx.beginPath();
-          qx.moveTo(t.tri[0].x, t.tri[0].y);
-          qx.lineTo(t.tri[1].x, t.tri[1].y);
-          qx.lineTo(t.tri[2].x, t.tri[2].y);
-          qx.closePath();
-          qx.fillStyle = t.color;
-          qx.fill();
-          qx.strokeStyle = 'rgba(0,0,0,0.4)';
-          qx.lineWidth = 0.6;
-          qx.stroke();
-        }
-      }
-
-      window.addEventListener('resize', buildQ);
-      buildQ();
     })();
 
     // ── Active nav highlight on scroll ──
