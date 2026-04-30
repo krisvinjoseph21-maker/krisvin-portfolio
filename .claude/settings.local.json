@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills *)",
+      "Bash(curl -fsSL https://squirrelscan.com/install.sh)",
+      "Bash(sh)",
+      "Bash(curl -s \"https://api.github.com/repos/squirrelscan/squirrelscan/releases/latest\")",
+      "Bash(curl -L \"https://github.com/squirrelscan/squirrelscan/releases/download/v0.0.38/squirrel-0.0.38-windows-x64.exe\" -o /c/Users/AWSExam/.local/bin/squirrel.exe)",
+      "Bash(export PATH=\"$PATH:/c/Users/AWSExam/.local/bin\")",
+      "Bash(curl *)",
+      "Bash(squirrel init *)",
+      "Bash(squirrel audit *)",
+      "Bash(node *)"
+    ]
+  }
+}

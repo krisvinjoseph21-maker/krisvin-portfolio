@@ -122,7 +122,7 @@
     .location-icon { width: 40px; height: 40px; border: 1px solid var(--border-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .location-label { font-size: 12px; color: var(--text-secondary); font-weight: 500; }
     .location-value { font-size: 14px; color: var(--text); font-weight: 500; margin-top: 2px; }
-    .contact-form-card { background: rgba(16,16,18,0.88); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 28px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .contact-form-card { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 16px; padding: 28px; }
     .contact-form { display: flex; flex-direction: column; gap: 12px; }
     .contact-form input, .contact-form textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); border-radius: 10px; padding: 14px 16px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
     .contact-form input::placeholder, .contact-form textarea::placeholder { color: #4a4a4a; }
@@ -132,6 +132,11 @@
     .contact-form button:hover { background: #d8d8d8; transform: translateY(-1px); }
     footer { border-top: 1px solid var(--border); padding: 28px 0 40px; text-align: center; }
     footer p { font-size: 12px; color: var(--text-tertiary); }
+    footer a { color: var(--text-tertiary); text-decoration: none; transition: color 0.15s; }
+    footer a:hover { color: var(--text-secondary); }
+    .contact-links { display: flex; flex-direction: column; gap: 6px; margin-top: 24px; }
+    .contact-link { font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; letter-spacing: -0.01em; }
+    .contact-link:hover { color: var(--text); }
     @media (max-width: 680px) {
       .nav-pill { padding: 4px; }
       .nav-tab { font-size: 11.5px; padding: 6px 10px; }
@@ -144,6 +149,11 @@
     }
     @media (max-width: 480px) {
       .nav-tab { font-size: 11px; padding: 5px 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+      .project-card:hover, .btn:hover { transform: none; }
     }
 
     /* ── Loader ── */
@@ -451,7 +461,7 @@
           <div>
             <span class="contact-eyebrow">Contact</span>
             <h2 id="contact-heading" class="section-heading">Get In Touch</h2>
-            <p class="contact-sub">I'm always looking to learn and collaborate on new ideas. Let's connect!</p>
+            <p class="contact-sub">Open to opportunities, collaborations, and interesting problems. Reach out directly.</p>
             <div class="contact-location">
               <div class="location-icon">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-secondary)">
@@ -463,6 +473,11 @@
                 <div class="location-label">Location</div>
                 <div class="location-value">Frisco, TX</div>
               </div>
+            </div>
+            <div class="contact-links">
+              <a href="mailto:krisvinjoseph21@gmail.com" class="contact-link">krisvinjoseph21@gmail.com</a>
+              <a href="https://github.com/krisvinjoseph21-maker" class="contact-link" target="_blank" rel="noopener noreferrer">github.com/krisvinjoseph21-maker</a>
+              <a href="https://www.linkedin.com/in/krisvin-joseph" class="contact-link" target="_blank" rel="noopener noreferrer">linkedin.com/in/krisvin-joseph</a>
             </div>
           </div>
           <div class="contact-form-card">
@@ -481,11 +496,13 @@
 
   <footer>
     <div class="container">
-      <p>Krisvin Joseph · Dallas, TX · <time datetime="2026">2026</time></p>
+      <p>Krisvin Joseph · Frisco, TX · <time datetime="2026">2026</time> · <a href="https://github.com/krisvinjoseph21-maker" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://www.linkedin.com/in/krisvin-joseph" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
     </div>
   </footer>
 
   <script>
+    const PRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // ── Loading screen ──
     (function () {
       const loader  = document.getElementById('loader');
@@ -571,28 +588,34 @@
       requestAnimationFrame(frame);
     }
 
-    window.addEventListener('resize', () => { resize(); mkPts(); });
-    resize(); mkPts(); frame();
+    if (!PRM) {
+      window.addEventListener('resize', () => { resize(); mkPts(); });
+      resize(); mkPts(); frame();
+    }
 
     // ── Typewriter ──
     const phrases = [
-      'Aspiring Software Engineer.',
+      'Software Engineer.',
       'Full-Stack Developer.',
-      'Aspiring ML Engineer.',
+      'ML Engineer.',
       'AI Enthusiast.',
       'Tech Lover.',
       'Founder.'
     ];
-    let pi = 0, ci = 0, del = false;
     const typed = document.getElementById('typed');
 
-    (function type() {
-      const cur = phrases[pi];
-      typed.textContent = del ? cur.slice(0, --ci) : cur.slice(0, ++ci);
-      if (!del && ci === cur.length) { del = true; setTimeout(type, 1800); return; }
-      if (del  && ci === 0)          { del = false; pi = (pi + 1) % phrases.length; }
-      setTimeout(type, del ? 38 : 78);
-    })();
+    if (PRM) {
+      typed.textContent = phrases[0];
+    } else {
+      let pi = 0, ci = 0, del = false;
+      (function type() {
+        const cur = phrases[pi];
+        typed.textContent = del ? cur.slice(0, --ci) : cur.slice(0, ++ci);
+        if (!del && ci === cur.length) { del = true; setTimeout(type, 1800); return; }
+        if (del  && ci === 0)          { del = false; pi = (pi + 1) % phrases.length; }
+        setTimeout(type, del ? 38 : 78);
+      })();
+    }
 
     // ── Contact low-poly background ──
     (function () {
