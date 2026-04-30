@@ -621,53 +621,90 @@
       })();
     }
 
-    // ── Contact low-poly background ──
+    // ── Contact low-poly background (with inverse mouse parallax) ──
     (function () {
       const cc = document.getElementById('contact-canvas');
       const cx = cc.getContext('2d');
+
+      const MARGIN   = 30;
+      const PARALLAX = 15;
+      const LERP     = 0.05;
+
+      let triangles = [];
+      let tx = 0, ty = 0;
+      let cxOff = 0, cyOff = 0;
 
       function build() {
         cc.width  = cc.offsetWidth;
         cc.height = cc.offsetHeight;
         const W = cc.width, H = cc.height;
         const COLS = 14, ROWS = 9;
-        const cw = W / (COLS - 1), ch = H / (ROWS - 1);
+
+        const cw = (W + MARGIN * 2) / (COLS - 1);
+        const ch = (H + MARGIN * 2) / (ROWS - 1);
         const pts = [];
 
         for (let r = 0; r < ROWS; r++) {
           for (let c = 0; c < COLS; c++) {
             const edge = r === 0 || r === ROWS-1 || c === 0 || c === COLS-1;
             pts.push({
-              x: c * cw + (edge ? 0 : (Math.random()-0.5) * cw * 0.7),
-              y: r * ch + (edge ? 0 : (Math.random()-0.5) * ch * 0.7)
+              x: -MARGIN + c * cw + (edge ? 0 : (Math.random()-0.5) * cw * 0.7),
+              y: -MARGIN + r * ch + (edge ? 0 : (Math.random()-0.5) * ch * 0.7)
             });
           }
         }
 
-        cx.clearRect(0, 0, W, H);
+        triangles = [];
         for (let r = 0; r < ROWS-1; r++) {
           for (let c = 0; c < COLS-1; c++) {
             const i = r * COLS + c;
             const tl = pts[i], tr = pts[i+1], bl = pts[i+COLS], br = pts[i+COLS+1];
             [[tl,tr,bl],[tr,br,bl]].forEach(function(tri) {
               const v = 12 + Math.random() * 18;
-              cx.beginPath();
-              cx.moveTo(tri[0].x, tri[0].y);
-              cx.lineTo(tri[1].x, tri[1].y);
-              cx.lineTo(tri[2].x, tri[2].y);
-              cx.closePath();
-              cx.fillStyle = 'rgb('+v+','+v+','+(v+2)+')';
-              cx.fill();
-              cx.strokeStyle = 'rgba(0,0,0,0.35)';
-              cx.lineWidth = 0.6;
-              cx.stroke();
+              triangles.push({ tri: tri, color: 'rgb('+v+','+v+','+(v+2)+')' });
             });
           }
         }
       }
 
-      build();
+      function draw() {
+        cx.clearRect(0, 0, cc.width, cc.height);
+        cx.save();
+        cx.translate(cxOff, cyOff);
+        for (const t of triangles) {
+          cx.beginPath();
+          cx.moveTo(t.tri[0].x, t.tri[0].y);
+          cx.lineTo(t.tri[1].x, t.tri[1].y);
+          cx.lineTo(t.tri[2].x, t.tri[2].y);
+          cx.closePath();
+          cx.fillStyle = t.color;
+          cx.fill();
+          cx.strokeStyle = 'rgba(0,0,0,0.35)';
+          cx.lineWidth = 0.6;
+          cx.stroke();
+        }
+        cx.restore();
+      }
+
+      function tick() {
+        cxOff += (tx - cxOff) * LERP;
+        cyOff += (ty - cyOff) * LERP;
+        draw();
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener('mousemove', function (e) {
+        const nx = (e.clientX / window.innerWidth)  * 2 - 1;
+        const ny = (e.clientY / window.innerHeight) * 2 - 1;
+        tx = -nx * PARALLAX;
+        ty = -ny * PARALLAX;
+      });
+
       window.addEventListener('resize', build);
+      build();
+
+      if (PRM) draw();
+      else     tick();
     })();
 
     // ── Contact form → mailto ──
