@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; img-src 'self' data: https:; connect-src 'none'; base-uri 'self'; form-action 'none';" />
+  <style id="_fb">html{display:none!important}</style>
+  <script>if(self===top){var e=document.getElementById('_fb');if(e)e.remove();}else{top.location=self.location;}</script>
   <title>Krisvin Joseph — Software Engineer</title>
   <meta name="description" content="Software Engineer, Full-Stack Developer, and ML Engineer based in Dallas, TX. Founder of Gamesense AI. CS student at UT Dallas." />
   <link rel="canonical" href="https://krisvinjoseph21-maker.github.io/krisvin-portfolio/" />
@@ -482,9 +486,9 @@
           </div>
           <div class="contact-form-card">
             <form class="contact-form" id="contact-form">
-              <input type="text" id="cf-name" placeholder="Name" required />
-              <input type="email" id="cf-email" placeholder="Email" required />
-              <textarea id="cf-message" placeholder="Your message..." required></textarea>
+              <input type="text" id="cf-name" placeholder="Name" required maxlength="100" autocomplete="name" />
+              <input type="email" id="cf-email" placeholder="Email" required maxlength="254" autocomplete="email" />
+              <textarea id="cf-message" placeholder="Your message..." required maxlength="2000"></textarea>
               <button type="submit">Send message</button>
             </form>
           </div>
@@ -669,9 +673,11 @@
     // ── Contact form → mailto ──
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      const name    = document.getElementById('cf-name').value.trim();
-      const email   = document.getElementById('cf-email').value.trim();
-      const message = document.getElementById('cf-message').value.trim();
+      const name    = document.getElementById('cf-name').value.trim().slice(0, 100);
+      const email   = document.getElementById('cf-email').value.trim().slice(0, 254);
+      const message = document.getElementById('cf-message').value.trim().slice(0, 2000);
+      if (!name || !email || !message) return;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
       const subject = encodeURIComponent('Portfolio Contact from ' + name);
       const body    = encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\n' + message);
       window.location.href = 'mailto:krisvinjoseph21@gmail.com?subject=' + subject + '&body=' + body;
