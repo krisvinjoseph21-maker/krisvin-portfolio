@@ -114,6 +114,9 @@
     .exp-bullets li { font-size: 13px; color: var(--text-secondary); line-height: 1.7; padding-left: 18px; position: relative; }
     .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--text-tertiary); }
     .exp-bullets strong { color: var(--text); font-weight: 600; }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
     .skills-groups { display: flex; flex-direction: column; gap: 40px; }
     .skill-group { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: start; }
     .skill-group-label { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 2.8vw, 26px); font-weight: 700; letter-spacing: -0.02em; color: var(--text); padding-top: 6px; }
@@ -402,7 +405,7 @@
         <h2 id="projects-heading" class="section-heading">Personal Projects</h2>
         <div class="projects">
 
-          <a class="project-card" href="https://beat-store-d3iw.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <a class="project-card reveal" href="https://beat-store-d3iw.vercel.app/" target="_blank" rel="noopener noreferrer">
             <div class="project-header">
               <span class="project-title">PRODKJBEATS</span>
               <span class="project-arrow" aria-hidden="true">↗</span>
@@ -427,7 +430,7 @@
             </div>
           </a>
 
-          <div class="project-card">
+          <div class="project-card reveal">
             <div class="project-header">
               <span class="project-title">2D Action Game Engine</span>
             </div>
@@ -454,7 +457,7 @@
       <div class="container">
         <h2 id="experience-heading" class="section-heading">Experience</h2>
         <div class="exp-stack">
-          <div class="exp-card">
+          <div class="exp-card reveal">
             <div class="exp-header">
               <span class="exp-title">Gamesense AI</span>
               <span class="exp-date"><time datetime="2025-11">Nov 2025</time> – Present</span>
@@ -465,7 +468,7 @@
               <li>Engineered an end-to-end data pipeline — web scraping, feature engineering, and real-time inference — delivering predictive performance insights to <strong>200+ active users</strong></li>
             </ul>
           </div>
-          <div class="exp-card">
+          <div class="exp-card reveal">
             <div class="exp-header">
               <span class="exp-title">The University of Texas at Dallas</span>
               <span class="exp-date">Expected 2029</span>
@@ -828,6 +831,15 @@
     }, { threshold: 0.35 });
 
     sections.forEach(s => obs.observe(s));
+
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
   </script>
 
 </body>
