@@ -644,8 +644,12 @@
     // ── Particle mesh background ──
     const canvas = document.getElementById('bg-canvas');
     const ctx    = canvas.getContext('2d');
-    const N = 72, LINK = 155;
+    const N = 72, LINK = 155, PUSH_R = 120, PUSH_F = 2.8;
     let pts = [];
+    let mouse = { x: -9999, y: -9999 };
+
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
 
     function resize() {
       canvas.width  = window.innerWidth;
@@ -666,6 +670,14 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (const p of pts) {
+        const dx = p.x - mouse.x, dy = p.y - mouse.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < PUSH_R && dist > 0) {
+          const force = (1 - dist / PUSH_R) * PUSH_F;
+          p.vx += (dx / dist) * force;
+          p.vy += (dy / dist) * force;
+        }
+        p.vx *= 0.97; p.vy *= 0.97;
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
